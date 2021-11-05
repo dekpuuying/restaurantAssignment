@@ -17,14 +17,15 @@
 
         <ImageView
             android:id="@+id/imgMenu"
-            android:layout_width="26dp"
+            android:layout_width="71dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
-            android:layout_width="157dp"
+            android:layout_width="241dp"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
