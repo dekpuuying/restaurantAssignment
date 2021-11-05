@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.order.myapplication.model.Menu;
 import com.squareup.picasso.Picasso;
@@ -32,22 +33,27 @@ public class CustomAdapterMenu extends BaseAdapter {
     public int getViewTypeCount() {
         return getCount();
     }
+
     @Override
     public int getItemViewType(int position) {
         return position;
     }
+
     @Override
     public int getCount() {
         return menus.size();
     }
+
     @Override
     public Object getItem(int position) {
         return menus.get(position);
     }
+
     @Override
     public long getItemId(int position) {
         return 0;
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ListviewMenu holder;
@@ -71,6 +77,7 @@ public class CustomAdapterMenu extends BaseAdapter {
         holder.cbMenu.setChecked(menus.get(position).getChecked());
         holder.cbMenu.setText(menus.get(position).getPrice().intValue()+"");
 
+
         holder.cbMenu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -82,6 +89,10 @@ public class CustomAdapterMenu extends BaseAdapter {
                     {
                         sum = sum - Integer.parseInt (compoundButton.getText().toString());
                     }
+                    if(sum>0)
+                    {
+                        Toast.makeText(context, "Total price : "+sum+" THB", Toast.LENGTH_LONG).show();
+                    }
                 } catch (Exception e)
                 {
                     System.out.println("Error : " + e.toString());
@@ -92,7 +103,6 @@ public class CustomAdapterMenu extends BaseAdapter {
 
         return convertView;
     }
-
 
     public int getSum() {
         return sum;

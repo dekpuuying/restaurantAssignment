@@ -1,8 +1,10 @@
 package com.order.myapplication;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,7 +33,6 @@ public class RestaurantMenu extends AppCompatActivity {
     ListView listViewMenus;
     TextView restaurantName, restaurantKind;
     ImageView restaurantImg;
-    int sum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,6 @@ public class RestaurantMenu extends AppCompatActivity {
         restaurantKind = (TextView) findViewById(R.id.txtRestaurantKind);
         restaurantImg = (ImageView) findViewById(R.id.imgRestaurant);
         listViewMenus = (ListView) findViewById(R.id.ListViewMenu);
-
-        sum = 0;
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(web)
@@ -70,6 +69,7 @@ public class RestaurantMenu extends AppCompatActivity {
         listViewMenus.setAdapter(customAdapterMenu);
 
 //      End
+
 //            List<HashMap<String, String>> fill_data = new ArrayList<HashMap<String, String>>();
 //            String[] from = new String[]{"name", "price", "img"};
 //            int[] to = new int[]{R.id.txtMenuName, R.id.txtMenuPrice, R.id.imgMenu};
@@ -86,23 +86,7 @@ public class RestaurantMenu extends AppCompatActivity {
 //            listViewMenus.setAdapter(myA);
 
 
-
-        listViewMenus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                try {
-//                    Object item = adapterView.getItemAtPosition(i);
-//                    JSONObject selected = new JSONObject();
-//                    selected = new JSONObject(new Gson().toJson(item));
-//                    sum += selected.getInt("price");
-                    System.out.println("Price : " + sum);
-//                    Toast.makeText(getApplicationContext(), "Total Price \n" + sum + " THB", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    System.out.println("Error : " + e.toString());
-                }
-            }
-        });
-
     }
+
 }
 
