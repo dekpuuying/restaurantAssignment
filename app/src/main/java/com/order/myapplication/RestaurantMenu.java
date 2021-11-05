@@ -64,12 +64,10 @@ public class RestaurantMenu extends AppCompatActivity {
         restaurantName.setText(restaurant.getName());
         restaurantKind.setText(restaurant.getKind());
         Picasso.get().load(restaurant.getImage_url()).into(restaurantImg);
-
-        try {
 //      Start
 
-            CustomAdapterMenu customAdapterMenu = new CustomAdapterMenu(RestaurantMenu.this,menus);
-            listViewMenus.setAdapter(customAdapterMenu);
+        CustomAdapterMenu customAdapterMenu = new CustomAdapterMenu(RestaurantMenu.this, menus);
+        listViewMenus.setAdapter(customAdapterMenu);
 
 //      End
 //            List<HashMap<String, String>> fill_data = new ArrayList<HashMap<String, String>>();
@@ -86,18 +84,17 @@ public class RestaurantMenu extends AppCompatActivity {
 //
 //            SimpleAdapter myA = new SimpleAdapter(listViewMenus.getContext(), fill_data, R.layout.menulist, from, to);
 //            listViewMenus.setAdapter(myA);
-        } catch (Exception e) {
-            System.out.println("Error : " + e.toString());
-        }
+
+
 
         listViewMenus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
-                    Object item = adapterView.getItemAtPosition(i);
-                    JSONObject selected = new JSONObject();
-                    selected = new JSONObject(new Gson().toJson(item));
-                    sum += selected.getInt("price");
+//                    Object item = adapterView.getItemAtPosition(i);
+//                    JSONObject selected = new JSONObject();
+//                    selected = new JSONObject(new Gson().toJson(item));
+//                    sum += selected.getInt("price");
                     System.out.println("Price : " + sum);
 //                    Toast.makeText(getApplicationContext(), "Total Price \n" + sum + " THB", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {

@@ -8,8 +8,19 @@ public class Menu {
     private String image_url;
     private Float price;
     private int deliver_time;
+    private Boolean checked = false;
 
     public Menu() {
+    }
+
+    public Menu(int id, int restaurant_id, String name, String image_url, Float price, int deliver_time, Boolean checked) {
+        this.id = id;
+        this.restaurant_id = restaurant_id;
+        this.name = name;
+        this.image_url = image_url;
+        this.price = price;
+        this.deliver_time = deliver_time;
+        this.checked = checked;
     }
 
     public Menu(int id, int restaurant_id, String name, String image_url, Float price, int deliver_time) {
@@ -69,15 +80,24 @@ public class Menu {
         this.deliver_time = deliver_time;
     }
 
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
     @Override
     public String toString() {
-        return "menu{" +
+        return "Menu{" +
                 "id=" + id +
                 ", restaurant_id=" + restaurant_id +
                 ", name='" + name + '\'' +
                 ", image_url='" + image_url + '\'' +
                 ", price=" + price +
                 ", deliver_time=" + deliver_time +
+                ", checked=" + checked +
                 '}';
     }
 }

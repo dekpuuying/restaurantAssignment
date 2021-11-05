@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +20,8 @@ public class CustomAdapterMenu extends BaseAdapter {
 
     private Context context;
     private List<Menu> menus;
+
+    private int sum = 0;
 
     public CustomAdapterMenu(Context context, List<Menu> menus) {
         this.context = context;
@@ -55,6 +59,7 @@ public class CustomAdapterMenu extends BaseAdapter {
             holder.imgMenu = (ImageView) convertView.findViewById(R.id.imgMenu);
             holder.txtName = (TextView) convertView.findViewById(R.id.txtMenuName);
             holder.txtPrice = (TextView) convertView.findViewById(R.id.txtMenuPrice);
+            holder.cbMenu = (CheckBox) convertView.findViewById(R.id.checkBox);
             convertView.setTag(holder);
         }else {
             holder = (ListviewMenu) convertView.getTag();
@@ -63,16 +68,49 @@ public class CustomAdapterMenu extends BaseAdapter {
         holder.txtName.setText(menus.get(position).getName());
         holder.txtPrice.setText(menus.get(position).getPrice().intValue() + " THB");
         Picasso.get().load(menus.get(position).getImage_url()).into(holder.imgMenu);
+        holder.cbMenu.setChecked(menus.get(position).getChecked());
+        holder.cbMenu.setText(menus.get(position).getPrice().intValue()+"");
+
+        holder.cbMenu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                try {
+                    if(b)
+                    {
+                        sum = sum + Integer.parseInt (compoundButton.getText().toString());
+                    } else
+                    {
+                        sum = sum - Integer.parseInt (compoundButton.getText().toString());
+                    }
+                } catch (Exception e)
+                {
+                    System.out.println("Error : " + e.toString());
+                }
+            }
+        });
+
+
         return convertView;
+    }
+
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
     }
 
     private class ListviewMenu {
 
-        private ImageView imgMenu;
+        ImageView imgMenu;
 
-        protected TextView txtName;
+        TextView txtName;
 
-        protected TextView txtPrice;
+        TextView txtPrice;
+
+        CheckBox cbMenu;
 
     }
 
